@@ -777,7 +777,7 @@ def robust_match_fundamental(
     p1 = p1[matches[:, 0]][:, :2].copy()
     p2 = p2[matches[:, 1]][:, :2].copy()
 
-    FM_RANSAC = cv2.FM_RANSAC if context.OPENCV3 else cv2.cv.CV_FM_RANSAC
+    FM_RANSAC = cv2.FM_RANSAC if context.OPENCV3 else cv2.USAC_MAGSAC
     threshold = config["robust_matching_threshold"]
     F, mask = cv2.findFundamentalMat(p1, p2, FM_RANSAC, threshold, 0.9999)
     inliers = mask.ravel().nonzero()
